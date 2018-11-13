@@ -1,5 +1,8 @@
 package com.ccss.registration.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import java.util.Collection;
 
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "user", schema = "public", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
@@ -34,9 +39,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
-    public User() {
-    }
-
     public User(String email, String password) {
         this.email = email;
         this.password = password;
@@ -48,41 +50,4 @@ public class User {
         this.roles = roles;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long pId) {
-        id = pId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String pEmail) {
-        email = pEmail;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String pPassword) {
-        password = pPassword;
-    }
-
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Collection<Role> pRoles) {
-        roles = pRoles;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" + "id=" + id + ", email='" + email + '\'' + ", password='" + "*********" + '\'' + ", roles="
-                + roles + '}';
-    }
 }
